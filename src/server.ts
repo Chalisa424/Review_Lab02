@@ -13,7 +13,13 @@ app.get("/test", (req:Request, res:Response) =>{
 })
 
 app.get("/events",(req, res)=>{
-  res.send(events);
+  if (req.query.category) {
+  const category = req.query.category;
+  const filteredEvents = events.filter((event) => event.category === category);
+  res.json(filteredEvents);
+  } else {
+  res.json(events);
+  }
 })
 
 app.listen(port , () =>{
