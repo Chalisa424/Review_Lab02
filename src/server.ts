@@ -16,3 +16,14 @@ app.listen(port , () =>{
     console.log(`App listening at http://localhost:${port}`)
 })
 
+interface Event{
+    id: number;
+    category: String;
+    title:string;
+    description: string;
+    location: string;
+    date: string;
+    time: string;
+    petAllowed: boolean;
+    organizer: string;
+}
