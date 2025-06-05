@@ -6,15 +6,13 @@ app.get("/",(req:Request, res:Response)=>{
     res.send("Hello World!");
 })
 
-app.get("/test", (req, res) =>{
-   let returnObj ={
-        name:"test",
-        age: 30,
-        address:"Thai"
-   }
-   res.send(returnObj);
+app.get("/test", (req:Request, res:Response) =>{
+   const id = req.query.id;
+   const output = `id:${id}`;
+   res.send(output);
 })
 
 app.listen(port , () =>{
     console.log(`App listening at http://localhost:${port}`)
 })
+
