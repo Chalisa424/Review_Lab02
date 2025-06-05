@@ -4,16 +4,21 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "build" : "tsc",
-    "dev" :"ts-node src/index.ts"
-    },
+    "build": "tsc",
+    "dev": "ts-node src/index.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/node": "^22.15.29",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "review_lab02": "file:"
   }
 }
