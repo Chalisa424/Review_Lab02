@@ -14,19 +14,38 @@ app.get("/test", (req:Request, res:Response) =>{
    res.send(output);
 })
 
+function getEventByCategory(category:string):Event []{
+  const filteredEvent = events.filter((event) => event.category === category);
+  return filteredEvent;
+}
+
+function getAllEvents(): Event[]{ // อ่านแล้วรู้ทันทีว่า "ดึง event ทั้งหมด"
+  return events;
+}
+
+function getEventById(id:number): Event | undefined {
+  return events.find((event)=> event.id === id);
+}
+
+function addEvent(newEvent: Event): Event{
+  newEvent.id = events.length + 1;
+  events.push(newEvent);
+  return newEvent;
+}
+
 app.get("/events",(req, res)=>{
   if (req.query.category) {
   const category = req.query.category;
-  const filteredEvents = events.filter((event) => event.category === category);
+  const filteredEvents = getEventByCategory(category as string);
   res.json(filteredEvents);
   } else {
-  res.json(events);
+  res.json(getAllEvents());
   }
 })
 
 app.get("/events/:id",(req, res) =>{
   const id = parseInt(req.params.id);
-  const event = events.find((event) => event.id === id);
+  const event = getEventById(id);
   if(event){
     res.json(event);
   }else{
@@ -36,8 +55,7 @@ app.get("/events/:id",(req, res) =>{
 
 app.post("/events", (req, res) =>{
   const newEvent: Event = req.body;
-  newEvent.id = events.length +1;
-  events.push(newEvent);
+  addEvent(newEvent)
   res.json(newEvent);
 })
 
