@@ -80,21 +80,21 @@ export const events : Event [] = [
 ];
 
 
-export function getEventByCategory(category:string):Event []{
+export function getEventByCategory(category:string):Promise<Event[]> { // อ่านแล้วรู้ทันทีว่า "ดึง event ตามหมวดหมู่"
   const filteredEvent = events.filter((event) => event.category === category);
-  return filteredEvent;
+  return Promise.resolve(filteredEvent);
 }
 
-export function getAllEvents(): Event[]{ // อ่านแล้วรู้ทันทีว่า "ดึง event ทั้งหมด"
-  return events;
+export function getAllEvents(): Promise<Event[]>{ // อ่านแล้วรู้ทันทีว่า "ดึง event ทั้งหมด"
+  return Promise.resolve(events);
 }
 
-export function getEventById(id:number): Event | undefined {
-  return events.find((event)=> event.id === id);
+export function getEventById(id:number): Promise<Event | undefined> {
+  return Promise.resolve(events.find((event)=> event.id === id));
 }
 
-export function addEvent(newEvent: Event): Event{
+export function addEvent(newEvent: Event): Promise<Event>{
   newEvent.id = events.length + 1;
   events.push(newEvent);
-  return newEvent;
+  return Promise.resolve(newEvent);
 }
